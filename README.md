@@ -86,8 +86,8 @@ The **Task Management System API** is a robust web application designed to strea
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/task-management-system-api.git
-   cd task-management-system-api
+   git clone https://github.com/KOJIMEISTER/task_manager.git
+   cd task_manager
    ```
 
 2. **Set Up the PostgreSQL Database**
