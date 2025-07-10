@@ -38,11 +38,6 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<Userrole> Userroles { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=tmapi_db;Username=tmapi_root;Password=546258");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<File>(entity =>
@@ -56,7 +51,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Taskid, "idx_files_taskid");
 
             entity.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
+                .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.Filename)
                 .HasMaxLength(255)
@@ -96,7 +91,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Userid, "idx_notifications_userid");
 
             entity.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
+                .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.Content)
                 .HasMaxLength(1024)
@@ -124,7 +119,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Name, "permissions_name_key").IsUnique();
 
             entity.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
+                .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.Createdat)
                 .HasDefaultValueSql("now()")
@@ -151,7 +146,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Name, "idx_projects_name");
 
             entity.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
+                .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.Createdat)
                 .HasDefaultValueSql("now()")
@@ -216,7 +211,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Token, "refreshtokens_token_key").IsUnique();
 
             entity.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
+                .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.Createdat)
                 .HasDefaultValueSql("now()")
@@ -244,7 +239,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Name, "roles_name_key").IsUnique();
 
             entity.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
+                .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.Createdat)
                 .HasDefaultValueSql("now()")
@@ -295,7 +290,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Status, "idx_tasks_status");
 
             entity.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
+                .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.Assigneeid).HasColumnName("assigneeid");
             entity.Property(e => e.Createdat)
@@ -347,7 +342,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Taskid, "idx_taskcomments_taskid");
 
             entity.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
+                .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.Comment)
                 .HasMaxLength(1024)
@@ -384,7 +379,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Username, "users_username_key").IsUnique();
 
             entity.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
+                .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.Createdat)
                 .HasDefaultValueSql("now()")
@@ -405,6 +400,9 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Passwordhash)
                 .HasMaxLength(255)
                 .HasColumnName("passwordhash");
+            entity.Property(e => e.Passwordsalt)
+                .HasMaxLength(255)
+                .HasColumnName("passwordsalt");
             entity.Property(e => e.Updatedat)
                 .HasDefaultValueSql("now()")
                 .HasColumnType("timestamp without time zone")

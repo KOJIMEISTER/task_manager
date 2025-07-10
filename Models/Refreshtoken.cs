@@ -5,9 +5,9 @@ namespace task_management_system_api.Models;
 
 public partial class Refreshtoken
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
-    public int Userid { get; set; }
+    public Guid Userid { get; set; }
 
     public string Token { get; set; } = null!;
 

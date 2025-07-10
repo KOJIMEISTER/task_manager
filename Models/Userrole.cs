@@ -5,9 +5,9 @@ namespace task_management_system_api.Models;
 
 public partial class Userrole
 {
-    public int Userid { get; set; }
+    public Guid Userid { get; set; }
 
-    public int Roleid { get; set; }
+    public Guid Roleid { get; set; }
 
     public DateTime Assignedat { get; set; }
 

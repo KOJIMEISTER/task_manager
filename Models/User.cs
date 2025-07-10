@@ -5,13 +5,15 @@ namespace task_management_system_api.Models;
 
 public partial class User
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     public string Username { get; set; } = null!;
 
     public string Email { get; set; } = null!;
 
     public string Passwordhash { get; set; } = null!;
+
+    public string Passwordsalt { get; set; } = null!;
 
     public string? Firstname { get; set; }
 

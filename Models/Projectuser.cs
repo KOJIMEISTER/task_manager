@@ -5,11 +5,11 @@ namespace task_management_system_api.Models;
 
 public partial class Projectuser
 {
-    public int Projectid { get; set; }
+    public Guid Projectid { get; set; }
 
-    public int Userid { get; set; }
+    public Guid Userid { get; set; }
 
-    public int Roleid { get; set; }
+    public Guid Roleid { get; set; }
 
     public DateTime Assignedat { get; set; }
 

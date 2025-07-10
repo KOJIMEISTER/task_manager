@@ -5,11 +5,11 @@ namespace task_management_system_api.Models;
 
 public partial class Taskcomment
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
-    public int Taskid { get; set; }
+    public Guid Taskid { get; set; }
 
-    public int Userid { get; set; }
+    public Guid Userid { get; set; }
 
     public string Comment { get; set; } = null!;
 
